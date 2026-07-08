@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Cegem360\Elallas\Http\Controllers;
 
+use Cegem360\Elallas\Events\WithdrawalDeclarationSubmitted;
 use Cegem360\Elallas\Http\Requests\SubmitDeclarationRequest;
+use Cegem360\Elallas\Mail\DeclarationReceivedConfirmation;
+use Cegem360\Elallas\Mail\DeclarationSubmittedNotification;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class WithdrawalFormController extends Controller
 {
@@ -38,6 +42,15 @@ class WithdrawalFormController extends Controller
             'submitted_at' => now(),
             'ip' => $request->ip(),
         ]);
+
+        WithdrawalDeclarationSubmitted::dispatch($record);
+
+        Mail::to($record->consumer_email)->send(new DeclarationReceivedConfirmation($record));
+
+        $notify = config('elallas.notify_email') ?: config('elallas.seller.email');
+        if (! empty($notify)) {
+            Mail::to($notify)->send(new DeclarationSubmittedNotification($record));
+        }
 
         $redirect = config('elallas.redirect_after');
 
