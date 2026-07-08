@@ -8,7 +8,9 @@ use Cegem360\Elallas\Enums\DeclarationType;
 use Cegem360\Elallas\Filament\Resources\Pages\ListWithdrawalDeclarations;
 use Cegem360\Elallas\Filament\Resources\Pages\ViewWithdrawalDeclaration;
 use Cegem360\Elallas\Models\WithdrawalDeclaration;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use UnitEnum;
@@ -39,6 +41,23 @@ class WithdrawalDeclarationResource extends Resource
                 TextColumn::make('submitted_at')->label('Beküldve')->dateTime(),
             ])
             ->defaultSort('submitted_at', 'desc');
+    }
+
+    public static function infolist(Schema $schema): Schema
+    {
+        return $schema->components([
+            TextEntry::make('type')
+                ->label('Típus')
+                ->formatStateUsing(fn ($state): string => $state instanceof DeclarationType ? $state->label() : (string) $state),
+            TextEntry::make('consumer_name')->label('Fogyasztó neve'),
+            TextEntry::make('consumer_email')->label('E-mail'),
+            TextEntry::make('consumer_address')->label('Cím')->columnSpanFull(),
+            TextEntry::make('subject')->label('Termék/szolgáltatás megnevezése')->columnSpanFull(),
+            TextEntry::make('contract_date')->label('Szerződés / átvétel dátuma')->date(),
+            TextEntry::make('order_reference')->label('Rendelési azonosító')->placeholder('—'),
+            TextEntry::make('message')->label('Megjegyzés')->columnSpanFull()->placeholder('—'),
+            TextEntry::make('submitted_at')->label('Beküldve')->dateTime(),
+        ]);
     }
 
     public static function canCreate(): bool

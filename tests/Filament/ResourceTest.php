@@ -16,5 +16,6 @@ class ResourceTest extends TestCase
         $this->assertSame('elallas', ElallasPlugin::make()->getId());
         $this->assertSame(WithdrawalDeclaration::class, WithdrawalDeclarationResource::getModel());
         $this->assertFalse(WithdrawalDeclarationResource::canCreate());
+        $this->assertTrue(method_exists(WithdrawalDeclarationResource::class, 'infolist'));
     }
 }
