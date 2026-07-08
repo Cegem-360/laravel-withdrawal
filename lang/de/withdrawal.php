@@ -28,4 +28,5 @@ return [
     'confirmation_intro' => 'Hiermit bestätigen wir, dass Ihre nachstehende Widerrufs- / Kündigungserklärung bei uns eingegangen ist:',
     'merchant_subject' => 'Neue Widerrufs- / Kündigungserklärung eingegangen',
     'merchant_intro' => 'Es ist eine neue Widerrufs- / Kündigungserklärung mit den folgenden Angaben eingegangen:',
+    'email_footer' => 'Diese E-Mail ist Ihre Bestätigung auf einem dauerhaften Datenträger gemäß der ungarischen Regierungsverordnung 45/2014. (II. 26.). Bitte bewahren Sie sie auf.',
 ];

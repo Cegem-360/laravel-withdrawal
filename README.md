@@ -1,6 +1,8 @@
-# Laravel Elállás
+# Laravel Withdrawal (elállás/felmondás)
 
 Online elállási/felmondási nyilatkozat (45/2014. (II. 26.) Korm. rendelet) Laravel csomag: űrlap a fogyasztóknak, a nyilatkozat tárolása, és tartós adathordozós e-mail visszaigazolás mind a fogyasztónak, mind a kereskedőnek.
+
+> 🤖 **AI-ügynökök / AI conversations:** a determinisztikus telepítési útmutató a [`AGENTS.md`](AGENTS.md) fájlban van. Ha ezt a csomagot egy AI-nak adod telepítésre, hivatkozz arra.
 
 ## Telepítés
 

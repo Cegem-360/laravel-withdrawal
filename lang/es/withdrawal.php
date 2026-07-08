@@ -28,4 +28,5 @@ return [
     'confirmation_intro' => 'Por la presente confirmamos que hemos recibido su declaración de desistimiento / rescisión que figura a continuación:',
     'merchant_subject' => 'Nueva declaración de desistimiento / rescisión recibida',
     'merchant_intro' => 'Se ha recibido una nueva declaración de desistimiento / rescisión con los siguientes datos:',
+    'email_footer' => 'Este correo es su confirmación en un soporte duradero conforme al Decreto Gubernamental húngaro 45/2014. (II. 26.). Consérvelo para sus registros.',
 ];

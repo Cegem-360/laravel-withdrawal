@@ -28,4 +28,5 @@ return [
     'confirmation_intro' => 'We hereby confirm that we have received your withdrawal / cancellation declaration below:',
     'merchant_subject' => 'New withdrawal / cancellation declaration received',
     'merchant_intro' => 'A new withdrawal / cancellation declaration has been received with the following details:',
+    'email_footer' => 'This email is your confirmation on a durable medium under Hungarian Government Decree 45/2014. (II. 26.). Please keep it for your records.',
 ];

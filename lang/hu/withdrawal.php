@@ -28,4 +28,5 @@ return [
     'confirmation_intro' => 'Ezúton visszaigazoljuk, hogy az alábbi elállási/felmondási nyilatkozata hozzánk beérkezett:',
     'merchant_subject' => 'Új elállási/felmondási nyilatkozat érkezett',
     'merchant_intro' => 'Új elállási/felmondási nyilatkozat érkezett az alábbi adatokkal:',
+    'email_footer' => 'Ez az e-mail a 45/2014. (II. 26.) Korm. rendelet szerinti, tartós adathordozón adott visszaigazolás. Kérjük, őrizze meg.',
 ];
