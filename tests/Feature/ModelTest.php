@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Tests\Feature;
+namespace Cegem360\Withdrawal\Tests\Feature;
 
-use Cegem360\Elallas\Enums\DeclarationType;
-use Cegem360\Elallas\Models\WithdrawalDeclaration;
-use Cegem360\Elallas\Tests\TestCase;
+use Cegem360\Withdrawal\Enums\DeclarationType;
+use Cegem360\Withdrawal\Models\WithdrawalDeclaration;
+use Cegem360\Withdrawal\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ModelTest extends TestCase
@@ -16,7 +16,7 @@ class ModelTest extends TestCase
     public function test_declaration_persists_and_casts(): void
     {
         $record = WithdrawalDeclaration::create([
-            'type' => DeclarationType::Elallas->value,
+            'type' => DeclarationType::Withdrawal->value,
             'consumer_name' => 'Teszt Elek',
             'consumer_address' => '1011 Budapest, Fő utca 1.',
             'consumer_email' => 'teszt@example.com',
@@ -27,8 +27,8 @@ class ModelTest extends TestCase
 
         $record->refresh();
 
-        $this->assertSame(DeclarationType::Elallas, $record->type);
-        $this->assertSame('elallas_declarations', $record->getTable());
+        $this->assertSame(DeclarationType::Withdrawal, $record->type);
+        $this->assertSame('withdrawal_declarations', $record->getTable());
         $this->assertSame('2026-07-01', $record->contract_date->format('Y-m-d'));
         $this->assertSame('Elállás', $record->type->label());
     }

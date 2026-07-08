@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Http\Requests;
+namespace Cegem360\Withdrawal\Http\Requests;
 
-use Cegem360\Elallas\Enums\DeclarationType;
+use Cegem360\Withdrawal\Enums\DeclarationType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

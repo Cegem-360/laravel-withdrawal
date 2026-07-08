@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Tests;
+namespace Cegem360\Withdrawal\Tests;
 
-use Cegem360\Elallas\ElallasServiceProvider;
+use Cegem360\Withdrawal\WithdrawalServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
     protected function getPackageProviders($app): array
     {
-        return [ElallasServiceProvider::class];
+        return [WithdrawalServiceProvider::class];
     }
 
     protected function defineEnvironment($app): void
@@ -23,11 +23,11 @@ abstract class TestCase extends Orchestra
             'database' => ':memory:',
             'prefix' => '',
         ]);
-        $app['config']->set('elallas.seller', [
+        $app['config']->set('withdrawal.seller', [
             'name' => 'Teszt Bolt Kft.',
             'address' => '1011 Budapest, Fő utca 1.',
             'email' => 'bolt@example.com',
         ]);
-        $app['config']->set('elallas.notify_email', 'bolt@example.com');
+        $app['config']->set('withdrawal.notify_email', 'bolt@example.com');
     }
 }

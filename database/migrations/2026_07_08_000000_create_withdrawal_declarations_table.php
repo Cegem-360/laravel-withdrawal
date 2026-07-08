@@ -10,9 +10,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create(config('elallas.table', 'elallas_declarations'), function (Blueprint $table): void {
+        Schema::create(config('withdrawal.table', 'withdrawal_declarations'), function (Blueprint $table): void {
             $table->id();
-            $table->string('type')->default('elallas');
+            $table->string('type')->default('withdrawal');
             $table->string('consumer_name');
             $table->text('consumer_address');
             $table->string('consumer_email');
@@ -28,6 +28,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists(config('elallas.table', 'elallas_declarations'));
+        Schema::dropIfExists(config('withdrawal.table', 'withdrawal_declarations'));
     }
 };

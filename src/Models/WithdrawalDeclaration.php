@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Models;
+namespace Cegem360\Withdrawal\Models;
 
-use Cegem360\Elallas\Enums\DeclarationType;
+use Cegem360\Withdrawal\Enums\DeclarationType;
 use Illuminate\Database\Eloquent\Model;
 
 class WithdrawalDeclaration extends Model
@@ -13,7 +13,7 @@ class WithdrawalDeclaration extends Model
 
     public function getTable(): string
     {
-        return config('elallas.table', 'elallas_declarations');
+        return config('withdrawal.table', 'withdrawal_declarations');
     }
 
     protected function casts(): array

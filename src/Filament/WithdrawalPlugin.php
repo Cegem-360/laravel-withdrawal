@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Filament;
+namespace Cegem360\Withdrawal\Filament;
 
-use Cegem360\Elallas\Filament\Resources\WithdrawalDeclarationResource;
+use Cegem360\Withdrawal\Filament\Resources\WithdrawalDeclarationResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class ElallasPlugin implements Plugin
+class WithdrawalPlugin implements Plugin
 {
     public static function make(): static
     {
@@ -17,7 +17,7 @@ class ElallasPlugin implements Plugin
 
     public function getId(): string
     {
-        return 'elallas';
+        return 'withdrawal';
     }
 
     public function register(Panel $panel): void

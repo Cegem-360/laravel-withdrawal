@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Http\Controllers;
+namespace Cegem360\Withdrawal\Http\Controllers;
 
-use Cegem360\Elallas\Events\WithdrawalDeclarationSubmitted;
-use Cegem360\Elallas\Http\Requests\SubmitDeclarationRequest;
-use Cegem360\Elallas\Mail\DeclarationReceivedConfirmation;
-use Cegem360\Elallas\Mail\DeclarationSubmittedNotification;
+use Cegem360\Withdrawal\Events\WithdrawalDeclarationSubmitted;
+use Cegem360\Withdrawal\Http\Requests\SubmitDeclarationRequest;
+use Cegem360\Withdrawal\Mail\DeclarationReceivedConfirmation;
+use Cegem360\Withdrawal\Mail\DeclarationSubmittedNotification;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
@@ -19,15 +19,15 @@ class WithdrawalFormController extends Controller
 {
     public function show(): Renderable
     {
-        return view('elallas::form', [
-            'seller' => config('elallas.seller'),
+        return view('withdrawal::form', [
+            'seller' => config('withdrawal.seller'),
         ]);
     }
 
     public function store(SubmitDeclarationRequest $request): RedirectResponse
     {
         /** @var class-string<Model> $model */
-        $model = config('elallas.model');
+        $model = config('withdrawal.model');
 
         $data = $request->validated();
 
@@ -49,25 +49,25 @@ class WithdrawalFormController extends Controller
         try {
             Mail::to($record->consumer_email)->send(new DeclarationReceivedConfirmation($record));
 
-            $notify = config('elallas.notify_email') ?: config('elallas.seller.email');
+            $notify = config('withdrawal.notify_email') ?: config('withdrawal.seller.email');
             if (! empty($notify)) {
                 Mail::to($notify)->send(new DeclarationSubmittedNotification($record));
             } else {
-                Log::warning('elallas: no merchant notify address configured; merchant notification skipped for declaration '.$record->getKey());
+                Log::warning('withdrawal: no merchant notify address configured; merchant notification skipped for declaration '.$record->getKey());
             }
         } catch (\Throwable $e) {
-            Log::error('elallas: confirmation email failed for declaration '.$record->getKey().': '.$e->getMessage());
+            Log::error('withdrawal: confirmation email failed for declaration '.$record->getKey().': '.$e->getMessage());
         }
 
-        $redirect = config('elallas.redirect_after');
+        $redirect = config('withdrawal.redirect_after');
 
         return $redirect !== null
-            ? redirect()->route($redirect)->with('elallas_success', true)
-            : redirect()->route('elallas.success');
+            ? redirect()->route($redirect)->with('withdrawal_success', true)
+            : redirect()->route('withdrawal.success');
     }
 
     public function success(): Renderable
     {
-        return view('elallas::success');
+        return view('withdrawal::success');
     }
 }

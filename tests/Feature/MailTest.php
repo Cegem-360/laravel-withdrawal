@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Tests\Feature;
+namespace Cegem360\Withdrawal\Tests\Feature;
 
-use Cegem360\Elallas\Events\WithdrawalDeclarationSubmitted;
-use Cegem360\Elallas\Mail\DeclarationReceivedConfirmation;
-use Cegem360\Elallas\Mail\DeclarationSubmittedNotification;
-use Cegem360\Elallas\Tests\TestCase;
+use Cegem360\Withdrawal\Events\WithdrawalDeclarationSubmitted;
+use Cegem360\Withdrawal\Mail\DeclarationReceivedConfirmation;
+use Cegem360\Withdrawal\Mail\DeclarationSubmittedNotification;
+use Cegem360\Withdrawal\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
@@ -19,7 +19,7 @@ class MailTest extends TestCase
     private function payload(): array
     {
         return [
-            'type' => 'elallas',
+            'type' => 'withdrawal',
             'consumer_name' => 'Teszt Elek',
             'consumer_address' => '1011 Budapest, Fő utca 1.',
             'consumer_email' => 'vevo@example.com',
@@ -69,8 +69,8 @@ class MailTest extends TestCase
     public function test_merchant_notification_falls_back_to_seller_email(): void
     {
         Mail::fake();
-        config(['elallas.notify_email' => '']);
-        config(['elallas.seller.email' => 'fallback@example.com']);
+        config(['withdrawal.notify_email' => '']);
+        config(['withdrawal.seller.email' => 'fallback@example.com']);
 
         $this->post('/elallasi-nyilatkozat', $this->payload());
 

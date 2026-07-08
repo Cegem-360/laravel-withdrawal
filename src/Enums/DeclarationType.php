@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Enums;
+namespace Cegem360\Withdrawal\Enums;
 
 enum DeclarationType: string
 {
-    case Elallas = 'elallas';
-    case Felmondas = 'felmondas';
+    case Withdrawal = 'withdrawal';
+    case Termination = 'termination';
 
     public function label(): string
     {
         return match ($this) {
-            self::Elallas => 'Elállás',
-            self::Felmondas => 'Felmondás',
+            self::Withdrawal => 'Elállás',
+            self::Termination => 'Felmondás',
         };
     }
 }

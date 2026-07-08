@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Mail;
+namespace Cegem360\Withdrawal\Mail;
 
-use Cegem360\Elallas\Models\WithdrawalDeclaration;
+use Cegem360\Withdrawal\Models\WithdrawalDeclaration;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -19,14 +19,14 @@ class DeclarationReceivedConfirmation extends Mailable
 
     public function envelope(): Envelope
     {
-        return new Envelope(subject: __('elallas::elallas.confirmation_subject'));
+        return new Envelope(subject: __('withdrawal::withdrawal.confirmation_subject'));
     }
 
     public function content(): Content
     {
-        return new Content(view: 'elallas::emails.consumer-confirmation', with: [
+        return new Content(view: 'withdrawal::emails.consumer-confirmation', with: [
             'declaration' => $this->declaration,
-            'seller' => config('elallas.seller'),
+            'seller' => config('withdrawal.seller'),
         ]);
     }
 }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Filament\Resources;
+namespace Cegem360\Withdrawal\Filament\Resources;
 
-use Cegem360\Elallas\Enums\DeclarationType;
-use Cegem360\Elallas\Filament\Resources\Pages\ListWithdrawalDeclarations;
-use Cegem360\Elallas\Filament\Resources\Pages\ViewWithdrawalDeclaration;
-use Cegem360\Elallas\Models\WithdrawalDeclaration;
+use Cegem360\Withdrawal\Enums\DeclarationType;
+use Cegem360\Withdrawal\Filament\Resources\Pages\ListWithdrawalDeclarations;
+use Cegem360\Withdrawal\Filament\Resources\Pages\ViewWithdrawalDeclaration;
+use Cegem360\Withdrawal\Models\WithdrawalDeclaration;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;

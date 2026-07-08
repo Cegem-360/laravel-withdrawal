@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\Elallas\Tests\Feature;
+namespace Cegem360\Withdrawal\Tests\Feature;
 
-use Cegem360\Elallas\Models\WithdrawalDeclaration;
-use Cegem360\Elallas\Tests\TestCase;
+use Cegem360\Withdrawal\Models\WithdrawalDeclaration;
+use Cegem360\Withdrawal\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FormTest extends TestCase
@@ -23,7 +23,7 @@ class FormTest extends TestCase
     public function test_valid_submission_is_stored(): void
     {
         $response = $this->post('/elallasi-nyilatkozat', [
-            'type' => 'elallas',
+            'type' => 'withdrawal',
             'consumer_name' => 'Teszt Elek',
             'consumer_address' => '1011 Budapest, Fő utca 1.',
             'consumer_email' => 'teszt@example.com',
@@ -31,9 +31,9 @@ class FormTest extends TestCase
             'contract_date' => '2026-07-01',
         ]);
 
-        $response->assertRedirect(route('elallas.success'));
+        $response->assertRedirect(route('withdrawal.success'));
 
-        $this->assertDatabaseCount('elallas_declarations', 1);
+        $this->assertDatabaseCount('withdrawal_declarations', 1);
         $record = WithdrawalDeclaration::first();
         $this->assertSame('Teszt Elek', $record->consumer_name);
         $this->assertNotNull($record->submitted_at);
@@ -45,13 +45,13 @@ class FormTest extends TestCase
             'consumer_email' => 'not-an-email',
         ])->assertSessionHasErrors(['type', 'consumer_name', 'subject', 'contract_date', 'consumer_email']);
 
-        $this->assertDatabaseCount('elallas_declarations', 0);
+        $this->assertDatabaseCount('withdrawal_declarations', 0);
     }
 
     public function test_honeypot_blocks_submission(): void
     {
         $this->post('/elallasi-nyilatkozat', [
-            'type' => 'elallas',
+            'type' => 'withdrawal',
             'consumer_name' => 'Bot',
             'consumer_address' => 'X',
             'consumer_email' => 'bot@example.com',
@@ -60,6 +60,6 @@ class FormTest extends TestCase
             'website' => 'http://spam.example',
         ])->assertSessionHasErrors('website');
 
-        $this->assertDatabaseCount('elallas_declarations', 0);
+        $this->assertDatabaseCount('withdrawal_declarations', 0);
     }
 }
