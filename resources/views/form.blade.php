@@ -35,8 +35,9 @@
 
         <p><label>{{ __('withdrawal::withdrawal.fields.type') }}<br>
             <select name="type" required>
-                <option value="withdrawal">Elállás</option>
-                <option value="felmondas">Felmondás</option>
+                @foreach (\Cegem360\Withdrawal\Enums\DeclarationType::cases() as $case)
+                    <option value="{{ $case->value }}">{{ $case->label() }}</option>
+                @endforeach
             </select></label></p>
 
         <p><label>{{ __('withdrawal::withdrawal.fields.subject') }} *<br>

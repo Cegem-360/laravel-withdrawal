@@ -5,11 +5,10 @@ declare(strict_types=1);
 return [
     'page_title' => 'Declaración de desistimiento / rescisión',
     'intro' => 'De conformidad con el Decreto Gubernamental húngaro 45/2014. (II. 26.), complete y envíe la declaración siguiente para desistir del contrato o rescindirlo. Confirmaremos la recepción sin demora en un soporte duradero (por correo electrónico). El consumidor tiene derecho a desistir sin justificación dentro de los 14 días siguientes a la recepción del producto.',
-    // Texto estatutario del modelo (Decreto 45/2014) — se mantiene en húngaro por ser la redacción jurídicamente vinculante.
-    'template_heading' => 'Elállási/Felmondási nyilatkozatminta',
-    'template_note' => '(csak a szerződéstől való elállási/felmondási szándék esetén töltse ki és juttassa vissza)',
+    'template_heading' => 'Modelo de declaración de desistimiento / rescisión',
+    'template_note' => '(complete y devuelva únicamente si desea desistir del contrato o rescindirlo)',
     'addressee' => 'Destinatario',
-    'statement' => 'Alulírott(ak) kijelentem/kijelentjük, hogy gyakorlom/gyakoroljuk elállási/felmondási jogomat/jogunkat az alábbi termék(ek) adásvételére vagy az alábbi szolgáltatás nyújtására irányuló szerződés tekintetében:',
+    'statement' => 'Por la presente declaro/declaramos que ejerzo/ejercemos mi/nuestro derecho de desistimiento o rescisión respecto del contrato de compraventa de los siguientes productos o de la prestación del siguiente servicio:',
     'fields' => [
         'type' => 'Tipo de declaración',
         'subject' => 'Producto / servicio',
@@ -26,7 +25,7 @@ return [
     'success_title' => 'Hemos recibido su declaración',
     'success_body' => 'Gracias. Hemos confirmado la recepción por correo electrónico a la dirección que nos ha facilitado.',
     'confirmation_subject' => 'Confirmación de su declaración de desistimiento / rescisión',
-    'confirmation_intro' => 'Ezúton visszaigazoljuk, hogy az alábbi elállási/felmondási nyilatkozata hozzánk beérkezett:',
+    'confirmation_intro' => 'Por la presente confirmamos que hemos recibido su declaración de desistimiento / rescisión que figura a continuación:',
     'merchant_subject' => 'Nueva declaración de desistimiento / rescisión recibida',
     'merchant_intro' => 'Se ha recibido una nueva declaración de desistimiento / rescisión con los siguientes datos:',
 ];

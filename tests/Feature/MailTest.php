@@ -62,7 +62,7 @@ class MailTest extends TestCase
 
             return str_contains($rendered, 'Teszt Bolt Kft.')
                 && str_contains($rendered, 'Kerékpár')
-                && str_contains($rendered, 'elállási/felmondási jogomat');
+                && str_contains($rendered, 'right of withdrawal or cancellation');
         });
     }
 

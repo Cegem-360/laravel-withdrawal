@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cegem360\Withdrawal\Tests\Feature;
 
+use Cegem360\Withdrawal\Enums\DeclarationType;
 use Cegem360\Withdrawal\Models\WithdrawalDeclaration;
 use Cegem360\Withdrawal\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,7 +18,7 @@ class FormTest extends TestCase
         $this->get('/elallasi-nyilatkozat')
             ->assertOk()
             ->assertSee('Teszt Bolt Kft.')
-            ->assertSee('Elállási/Felmondási nyilatkozatminta');
+            ->assertSee('Withdrawal / cancellation declaration template');
     }
 
     public function test_valid_submission_is_stored(): void
@@ -37,6 +38,31 @@ class FormTest extends TestCase
         $record = WithdrawalDeclaration::first();
         $this->assertSame('Teszt Elek', $record->consumer_name);
         $this->assertNotNull($record->submitted_at);
+    }
+
+    public function test_form_offers_exactly_the_enum_option_values(): void
+    {
+        $response = $this->get('/elallasi-nyilatkozat')->assertOk();
+
+        foreach (DeclarationType::cases() as $case) {
+            $response->assertSee('value="'.$case->value.'"', false);
+        }
+        // guard against the old hardcoded mismatch
+        $response->assertDontSee('value="felmondas"', false);
+    }
+
+    public function test_termination_type_submission_is_stored(): void
+    {
+        $this->post('/elallasi-nyilatkozat', [
+            'type' => DeclarationType::Termination->value,
+            'consumer_name' => 'Teszt Elek',
+            'consumer_address' => '1011 Budapest, Fő utca 1.',
+            'consumer_email' => 'teszt@example.com',
+            'subject' => 'Szolgáltatás',
+            'contract_date' => '2026-07-01',
+        ])->assertRedirect(route('withdrawal.success'));
+
+        $this->assertSame(DeclarationType::Termination, WithdrawalDeclaration::first()->type);
     }
 
     public function test_validation_rejects_missing_fields(): void
