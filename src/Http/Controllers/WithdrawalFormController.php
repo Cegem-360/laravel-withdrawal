@@ -12,6 +12,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class WithdrawalFormController extends Controller
@@ -45,11 +46,17 @@ class WithdrawalFormController extends Controller
 
         WithdrawalDeclarationSubmitted::dispatch($record);
 
-        Mail::to($record->consumer_email)->send(new DeclarationReceivedConfirmation($record));
+        try {
+            Mail::to($record->consumer_email)->send(new DeclarationReceivedConfirmation($record));
 
-        $notify = config('elallas.notify_email') ?: config('elallas.seller.email');
-        if (! empty($notify)) {
-            Mail::to($notify)->send(new DeclarationSubmittedNotification($record));
+            $notify = config('elallas.notify_email') ?: config('elallas.seller.email');
+            if (! empty($notify)) {
+                Mail::to($notify)->send(new DeclarationSubmittedNotification($record));
+            } else {
+                Log::warning('elallas: no merchant notify address configured; merchant notification skipped for declaration '.$record->getKey());
+            }
+        } catch (\Throwable $e) {
+            Log::error('elallas: confirmation email failed for declaration '.$record->getKey().': '.$e->getMessage());
         }
 
         $redirect = config('elallas.redirect_after');

@@ -8,13 +8,14 @@ Online elállási/felmondási nyilatkozat (45/2014. (II. 26.) Korm. rendelet) La
 composer require cegem360/laravel-elallas
 ```
 
-Publikáld a konfigurációt és a migrációkat, majd futtasd a migrációt:
+A csomag migrációja automatikusan betöltődik, tehát `php artisan migrate` futtatásával a `elallas_declarations` tábla publikálás nélkül is létrejön. Publikáld a konfigurációt:
 
 ```bash
 php artisan vendor:publish --tag=elallas-config
-php artisan vendor:publish --tag=elallas-migrations
 php artisan migrate
 ```
+
+A migráció publikálása (`php artisan vendor:publish --tag=elallas-migrations`) OPCIONÁLIS, csak akkor szükséges, ha testre szeretnéd szabni a migrációt (pl. további oszlopok hozzáadása).
 
 Opcionálisan publikálhatók a nézetek és a nyelvi fájlok is:
 
@@ -40,6 +41,8 @@ A csomag a következő elnevezett route-okat regisztrálja (a `config('elallas.r
 - `elallas.form` — GET, az elállási/felmondási nyilatkozat űrlapja.
 - `elallas.submit` — POST, a nyilatkozat beküldése.
 - `elallas.success` — GET, köszönő oldal a sikeres beküldés után.
+
+Az URL-előtag az `ELALLAS_ROUTE_PREFIX` környezeti változóval konfigurálható (alapértelmezett: `elallasi-nyilatkozat`). Ha a fogadó alkalmazásban már foglalt ez az útvonal-előtag, állítsd át más értékre az ütközés elkerülése érdekében.
 
 ## Esemény
 

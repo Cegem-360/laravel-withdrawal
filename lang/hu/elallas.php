@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'page_title' => 'Elállási/Felmondási nyilatkozat',
-    'intro' => 'A 45/2014. (II. 26.) Korm. rendelet alapján a szerződéstől való elállási/felmondási szándék esetén töltse ki és küldje be az alábbi nyilatkozatot. A beérkezést tartós adathordozón (e-mailben) haladéktalanul visszaigazoljuk.',
+    'intro' => 'A 45/2014. (II. 26.) Korm. rendelet alapján a szerződéstől való elállási/felmondási szándék esetén töltse ki és küldje be az alábbi nyilatkozatot. A beérkezést tartós adathordozón (e-mailben) haladéktalanul visszaigazoljuk. A fogyasztót a termék átvételétől számított 14 napon belül illeti meg az indokolás nélküli elállás joga.',
     'template_heading' => 'Elállási/Felmondási nyilatkozatminta',
     'template_note' => '(csak a szerződéstől való elállási/felmondási szándék esetén töltse ki és juttassa vissza)',
     'addressee' => 'Címzett',
@@ -27,4 +27,5 @@ return [
     'confirmation_subject' => 'Elállási/felmondási nyilatkozat visszaigazolása',
     'confirmation_intro' => 'Ezúton visszaigazoljuk, hogy az alábbi elállási/felmondási nyilatkozata hozzánk beérkezett:',
     'merchant_subject' => 'Új elállási/felmondási nyilatkozat érkezett',
+    'merchant_intro' => 'Új elállási/felmondási nyilatkozat érkezett az alábbi adatokkal:',
 ];

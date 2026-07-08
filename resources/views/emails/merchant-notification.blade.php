@@ -1,4 +1,4 @@
-<p>{{ __('elallas::elallas.confirmation_intro') }}</p>
+<p>{{ __('elallas::elallas.merchant_intro') }}</p>
 <ul>
     <li><strong>{{ __('elallas::elallas.fields.type') }}:</strong> {{ $declaration->type->label() }}</li>
     <li><strong>{{ __('elallas::elallas.fields.subject') }}:</strong> {{ $declaration->subject }}</li>
