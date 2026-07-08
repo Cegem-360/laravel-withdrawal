@@ -1,0 +1,36 @@
+{
+    "name": "cegem360/laravel-elallas",
+    "description": "Online elállási/felmondási nyilatkozat (45/2014. Korm. rendelet) Laravel csomag — form, tárolás, tartós adathordozós e-mail visszaigazolás.",
+    "keywords": ["laravel", "gdpr", "elallas", "withdrawal", "consumer", "45-2014", "hungary"],
+    "license": "MIT",
+    "authors": [
+        { "name": "Cégem 360 Kft.", "email": "info@cegem360.hu" }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0|^13.0",
+        "illuminate/contracts": "^11.0|^12.0|^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0|^11.0",
+        "phpunit/phpunit": "^10.5|^11.0",
+        "laravel/pint": "^1.0"
+    },
+    "suggest": {
+        "filament/filament": "Read-only admin felület a beadványokhoz (v5)."
+    },
+    "autoload": {
+        "psr-4": { "Cegem360\\Elallas\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Cegem360\\Elallas\\Tests\\": "tests/" }
+    },
+    "extra": {
+        "laravel": {
+            "providers": ["Cegem360\\Elallas\\ElallasServiceProvider"]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": { "sort-packages": true }
+}
