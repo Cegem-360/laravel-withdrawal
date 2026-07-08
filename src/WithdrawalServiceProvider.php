@@ -44,9 +44,17 @@ class WithdrawalServiceProvider extends ServiceProvider
     {
         $config = $this->app['config']->get('withdrawal.route');
 
+        // Guard against an empty/misconfigured prefix: the package routes are
+        // declared at "/", so without a prefix they would hijack the host app
+        // root. Fall back to the default prefix instead of grabbing "/".
+        $prefix = trim((string) ($config['prefix'] ?? ''), '/');
+        if ($prefix === '') {
+            $prefix = 'elallasi-nyilatkozat';
+        }
+
         Route::group([
-            'prefix' => $config['prefix'],
-            'middleware' => $config['middleware'],
+            'prefix' => $prefix,
+            'middleware' => $config['middleware'] ?? ['web'],
         ], function (): void {
             $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         });
