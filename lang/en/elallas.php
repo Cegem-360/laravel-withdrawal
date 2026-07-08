@@ -6,9 +6,9 @@ return [
     'page_title' => 'Withdrawal/Cancellation declaration',
     'intro' => 'Under Hungarian Government Decree 45/2014. (II. 26.), fill in and submit the declaration below to withdraw from or cancel the contract. We will confirm receipt on a durable medium (by email) without delay.',
     'template_heading' => 'Elállási/Felmondási nyilatkozatminta',
-    'template_note' => '(fill in and return only if you wish to withdraw from/cancel the contract)',
+    'template_note' => '(csak a szerződéstől való elállási/felmondási szándék esetén töltse ki és juttassa vissza)',
     'addressee' => 'Addressee',
-    'statement' => 'I/We hereby give notice that I/we withdraw from/cancel my/our contract for the sale of the following goods or the supply of the following service:',
+    'statement' => 'Alulírott(ak) kijelentem/kijelentjük, hogy gyakorlom/gyakoroljuk elállási/felmondási jogomat/jogunkat az alábbi termék(ek) adásvételére vagy az alábbi szolgáltatás nyújtására irányuló szerződés tekintetében:',
     'fields' => [
         'type' => 'Declaration type',
         'subject' => 'Goods/service',
@@ -25,6 +25,6 @@ return [
     'success_title' => 'We received your declaration',
     'success_body' => 'Thank you. We have confirmed receipt by email to the address you provided.',
     'confirmation_subject' => 'Confirmation of your withdrawal/cancellation declaration',
-    'confirmation_intro' => 'We hereby confirm that we have received your withdrawal/cancellation declaration below:',
+    'confirmation_intro' => 'Ezúton visszaigazoljuk, hogy az alábbi elállási/felmondási nyilatkozata hozzánk beérkezett:',
     'merchant_subject' => 'New withdrawal/cancellation declaration received',
 ];

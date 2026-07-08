@@ -65,4 +65,17 @@ class MailTest extends TestCase
                 && str_contains($rendered, 'elállási/felmondási jogomat');
         });
     }
+
+    public function test_merchant_notification_falls_back_to_seller_email(): void
+    {
+        Mail::fake();
+        config(['elallas.notify_email' => '']);
+        config(['elallas.seller.email' => 'fallback@example.com']);
+
+        $this->post('/elallasi-nyilatkozat', $this->payload());
+
+        Mail::assertSent(DeclarationSubmittedNotification::class, function (DeclarationSubmittedNotification $mail): bool {
+            return $mail->hasTo('fallback@example.com');
+        });
+    }
 }
